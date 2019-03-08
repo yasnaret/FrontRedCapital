@@ -18,13 +18,14 @@
         <v-card-title primary-title>
           <div>
             <div class="headline">{{person.name.first}} {{person.name.last}}</div>
-            <span class="grey--text">1,000 miles of wonder</span>
+            <span class="black--text">
+               <a v-bind:href="'mailto:' + person.email">{{person.email}}</a>
+            </span>
           </div>
         </v-card-title>
 
         <v-card-actions>
-          <v-btn flat>Ubicación</v-btn>
-          <v-btn flat color="purple">Más Informacíon</v-btn>
+          <v-btn flat color="white">Más Informacíon</v-btn>
           <v-spacer></v-spacer>
           <v-btn icon @click="show = !show">
             <v-icon>{{ show ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>
@@ -33,7 +34,51 @@
         
         <v-slide-y-transition>
           <v-card-text v-show="show">
-            I'm a thing. But, like most politicians, he promised more than he could deliver. You won't have time for sleeping, soldier, not with all the bed making you'll be doing. Then we'll go with that data file! Hey, you add a one and two zeros to that or we walk! You're going to do his laundry? I've got to find a way to escape.
+             <v-expansion-panel >
+    <v-expansion-panel-content class='black white--text'>
+      <template v-slot:header>
+        <div>DIRECCION</div>
+      </template>
+      <v-card>
+        <v-card-text class='blue-grey lighten-5'>
+          <address>
+            <v-icon>home</v-icon>
+              {{person.location.street}}
+              {{person.location.city}}
+              {{person.location.state}}
+            </address>
+        </v-card-text>
+      </v-card>
+    </v-expansion-panel-content>
+     <v-expansion-panel-content class='indigo lighten-3'>
+      <template v-slot:header>
+        <div>TELEFONO</div>
+      </template>
+      <v-card>
+        <v-card-text class='blue-grey lighten-5'>
+          <v-icon>phone</v-icon>
+         {{person.phone}}
+        </v-card-text>
+      </v-card>
+    </v-expansion-panel-content>
+    <v-expansion-panel-content class='blue lighten-3 purple--text'>
+      <template v-slot:header>
+        <div>UBICACION</div>
+      </template>
+      <v-card>
+        <v-card-text class='blue-grey lighten-5'>
+          <div class="person__map">
+            <iframe width="100%" height="170" frameborder="0" scrolling="no"
+             marginheight="0" marginwidth="0" 
+             v-bind:src="'https://maps.google.com/maps?q=' 
+             + person.location.coordinates.latitude +','
+              + person.location.coordinates.longitude + '&z=7&amp;output=embed'">
+            </iframe>
+          </div>
+        </v-card-text>
+      </v-card>
+    </v-expansion-panel-content>
+  </v-expansion-panel>
           </v-card-text>
         </v-slide-y-transition>
       </v-card> 
@@ -58,7 +103,7 @@
 
 <style scoped>
  .cardUser{
-   margin-top:12em;
+   margin-top:8em;
    background-color: #7e7a769e
  }
  .avatarUserPhoto{
@@ -76,5 +121,11 @@
 }
 .v-avatar img{
       border: 5px white solid
+}
+.black--text a{
+  color:black
+}
+.v-expansion-panel__header {
+  
 }
 </style>
