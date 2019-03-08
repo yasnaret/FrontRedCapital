@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app >
     <v-content>
       <UserCard/>
     </v-content>
@@ -14,9 +14,15 @@ export default {
     UserCard,
   },
   data () {
-    return {
-      //
-    }
+
   }
 }
 </script>
+
+<style>
+.application.theme--light,
+body{
+  background-image: url('./assets/background.jpg');
+  background-size:cover;
+} 
+</style>

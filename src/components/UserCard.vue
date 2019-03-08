@@ -1,16 +1,19 @@
 <template>
  <v-layout row>
-    <v-btn color="pink" dark small absolute
+    <v-btn color="pink" dark large absolute
       bottom left fab @click='GET_DATA'>
       <v-icon>refresh</v-icon>
     </v-btn>
     <v-flex xs12 sm6 offset-sm3>
-      <v-card v-for='(person,k) in persons' :key='k'>
-        <v-img
-          v-bind:src="person.picture.large"
-          height="200px"
-        >
-        </v-img>
+      <v-card v-for='(person,k) in persons' :key='k' class='cardUser'>
+       
+        <v-avatar
+        :size="174"
+        class='avatarUserPhoto'>
+          <img
+            v-bind:src="person.picture.large"
+            height="300px">    
+        </v-avatar>
          <v-card-text class="px-0"></v-card-text>    
         <v-card-title primary-title>
           <div>
@@ -52,3 +55,26 @@
   }
   
 </script>
+
+<style scoped>
+ .cardUser{
+   margin-top:12em;
+   background-color: #7e7a769e
+ }
+ .avatarUserPhoto{
+    margin-left: 19em;
+    margin-top: 2em;
+ }
+ .v-card__title--primary {
+    padding-top: 24px;
+    background-color: #0C88D5;
+    color: #d5e6e3;
+    text-transform: uppercase;
+}
+.v-btn--bottom.v-btn--absolute.v-btn--large {
+    bottom: 29px;
+}
+.v-avatar img{
+      border: 5px white solid
+}
+</style>
